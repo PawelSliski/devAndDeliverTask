@@ -9,4 +9,8 @@ export const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    heroId: {
+        type: Number,
+        required: true
+    }
 }, { timestamps: true })

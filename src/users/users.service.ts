@@ -4,6 +4,7 @@ import { User } from "./interfaces/user.entity";
 import * as bcrypt from "bcrypt";
 import { JwtPayload } from "src/auth/interfaces/jwtPayload.interface";
 import { JwtService } from "@nestjs/jwt";
+import axios from "axios";
 
 @Injectable()
 export class UsersService {
@@ -32,6 +33,10 @@ export class UsersService {
     //rfc822 check
   }
 
+  getRandomId(heroesCount: number): number {
+    return Math.floor(Math.random() * heroesCount) + 1  
+  }
+
   async register(user: User): Promise<JwtPayload | Error> {
     if(!this.isValidEmail(user.email))
       return new BadRequestException("Wrong e-mail format");
@@ -39,13 +44,16 @@ export class UsersService {
     if(existingUser)
       return new ConflictException("User already exists");
     const encryptedPassword: string = await bcrypt.hash(user.password, 10);
+    const charactersUrl: string = process.env.PEOPLE_URL;
+    const heroesCount: number = await axios.get(charactersUrl).then((response) => { return response.data.count}).catch((err: Error) => new BadRequestException(err));
     const userData: User = {
       email: user.email,
-      password: encryptedPassword
+      password: encryptedPassword,
+      heroId: this.getRandomId(heroesCount),
     };
     const jwt = this.jwtService.sign({email: user.email});
-    try {
-      const createdUser = await this.createUser(userData);
+    try{
+      const createdUser: User = await this.createUser(userData);
       createdUser.password = null;
       return {
         user: createdUser,
