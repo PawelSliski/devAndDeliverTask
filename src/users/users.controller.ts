@@ -13,9 +13,4 @@ export class UsersController {
     async create(@Body() user: User): Promise<JwtPayload | Error> {
         return await this.usersService.register(user);
     }
-
-    @Get()
-    async get(): Promise<User> {
-        return await this.usersService.getUserByEmail("email@email");
-    }
 }
