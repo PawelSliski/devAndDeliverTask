@@ -6,6 +6,8 @@ import { UsersModule } from "./users/users.module";
 import { FilmsModule } from "./films/films.module";
 import { SpeciesModule } from "./species/species.module";
 import { VehiclesModule } from "./vehicles/vehicles.module";
+import { StarshipsModule } from "./starships/starships.module";
+import { PlanetsModule } from "./planets/planets.module";
 
 @Module({
   imports: [
@@ -13,7 +15,9 @@ import { VehiclesModule } from "./vehicles/vehicles.module";
     UsersModule,
     FilmsModule,
     SpeciesModule,
-    VehiclesModule
+    VehiclesModule,
+    StarshipsModule,
+    PlanetsModule,
   ],
   providers: [
     {

@@ -14,12 +14,12 @@ export class VehiclesController {
         return await this.vehiclesService.getVehiclesByCurrentUser(user.email);
     }
 
-    @Get("/:vehiclesId")
+    @Get("/:vehicleId")
     async getVehiclesById(
-        @Param("vehiclesId") vehiclesId: number,
+        @Param("vehicleId") vehicleId: number,
         @Headers() headers
     ): Promise<Vehicle | Error> {
         const user: User = jwt_decode(headers.authorization);
-        return await this.vehiclesService.getVehiclesById(vehiclesId, user.email); 
+        return await this.vehiclesService.getVehiclesById(vehicleId, user.email); 
     }
 }

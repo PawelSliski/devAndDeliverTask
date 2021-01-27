@@ -1,6 +1,6 @@
-export interface Vehicle {
-    name: string;
-    model: string;
+export interface Starship {
+    name: string; 
+    model: string; 
     manufacturer: string;
     cost_in_credits: string;
     length: string;
@@ -9,8 +9,10 @@ export interface Vehicle {
     passengers: string;
     cargo_capacity: string;
     consumables: string;
-    vehicle_class: string;
-    pilots: string[] | [];
+    hyperdrive_rating: string;
+    MGLT: string;
+    starship_class: string;
+    pilots: string[] | []; 
     films: string[] | [];
     created: string;
     edited: string;

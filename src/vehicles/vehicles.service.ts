@@ -10,7 +10,7 @@ export class VehiclesService {
         return this.commonMethods.getValueByCurrentUser(userEmail, "vehicles");
     }
 
-    async getVehiclesById(vehiclesId: number, userEmail: string): Promise<Vehicle | Error> {
-        return this.commonMethods.getSelectedValueById(vehiclesId, userEmail, "vehicles");
+    async getVehiclesById(vehicleId: number, userEmail: string): Promise<Vehicle | Error> {
+        return this.commonMethods.getSelectedValueById(vehicleId, userEmail, "vehicles");
     }
 }

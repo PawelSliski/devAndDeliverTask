@@ -23,7 +23,7 @@ export class CommonsService<T> {
                 return "VEHICLES_URL"
             case "starships":
                 return "STARSHIPS_URL"
-            case "planets":
+            case "homeworld":
                 return "PLANETS_URL"
         }
     }
@@ -38,11 +38,12 @@ export class CommonsService<T> {
         const dbUser: User = await this.usersService.getUserByEmail(userEmail);
         const currentHeroUrl: string = this.getHeroUrl(dbUser.heroId);
         const urls: string[] = await this.getUrlsByHero(currentHeroUrl, value);
-        if(urls.length < 1) {
+        let resUrls = typeof urls !== "object" ? [urls] : urls;
+        if(resUrls.length < 1) {
             return [];
         };
-        const responseData = await Promise.all([...urls.map(async (url: string)=> {
-            return await axios.get(url).then((response => response.data)).catch((err: Error) => new BadRequestException(err));
+        const responseData = await Promise.all([...resUrls.map(async (targetUrl: string)=> {
+            return await axios.get(targetUrl).then((response => response.data)).catch((err: Error) => new BadRequestException(err));
         })]).then((userResponseData) => userResponseData);
         return responseData;
     }
