@@ -22,6 +22,8 @@ export class CommonsService<T> {
             case "vehicles":
                 return "VEHICLES_URL"
             case "starships":
+                return "STARSHIPS_URL"
+            case "planets":
                 return "PLANETS_URL"
         }
     }
