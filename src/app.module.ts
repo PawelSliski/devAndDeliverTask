@@ -5,12 +5,14 @@ import { AuthModule } from "./auth/auth.module";
 import { JwtAuthGuard } from "./auth/guards/jwtAuthGuard";
 import { UsersModule } from "./users/users.module";
 import { FilmsModule } from "./films/films.module";
+import { SpeciesModule } from "./auth/species/species.module";
 
 @Module({
   imports: [
     AuthModule,
     UsersModule,
     FilmsModule,
+    SpeciesModule
   ],
   providers: [
     {
