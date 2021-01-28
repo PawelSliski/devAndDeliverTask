@@ -45,7 +45,6 @@ export class CommonsService<T> {
         const responseData = await Promise.all([...resUrls.map(async (targetUrl: string)=> {
             return await axios.get(targetUrl).then((response => response.data)).catch((err: Error) => new BadRequestException(err));
         })]).then((userResponseData) => userResponseData);
-        console.log(responseData);
         return responseData;
     }
 
