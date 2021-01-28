@@ -1,10 +1,11 @@
-import { Controller, Get, Headers, Param } from "@nestjs/common";
+import { Controller, Get, Headers, Param, UseInterceptors, CacheInterceptor } from "@nestjs/common";
 import jwt_decode from "jwt-decode";
 import { User } from "src/users/interfaces/user.entity";
 import { Species } from "./interfaces/species.interface";
 import { SpeciesService } from "./species.service";
 
 @Controller("species")
+@UseInterceptors(CacheInterceptor)
 export class SpeciesController {
     constructor(private speciesService: SpeciesService) {}
     

@@ -1,10 +1,11 @@
-import { Controller, Get, Headers, Param } from "@nestjs/common";
+import { Controller, Get, Headers, Param, UseInterceptors, CacheInterceptor } from "@nestjs/common";
 import jwt_decode from "jwt-decode";
 import { User } from "src/users/interfaces/user.entity";
 import { Planet } from "./interfaces/planet.interface";
 import { PlanetsService } from "./planets.service";
 
 @Controller("planets")
+@UseInterceptors(CacheInterceptor)
 export class PlanetsController {
     constructor(private planetsService: PlanetsService) {}
     
