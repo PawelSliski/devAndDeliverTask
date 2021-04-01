@@ -1,5 +1,3 @@
-**Dev and deliver node.js recruitment task**
-
 API includes caching of SWApi data for 24h, cleared after stopping the server
 ----
   
